@@ -4,7 +4,7 @@ import axios from 'axios';
 import uuid from 'uuid/v4';
 // const uuidv4 = require('uuid/v4');
 // import { NewsItem } from './NewsItem';
-import { NewsItem } from '../news-card/news-card.component';
+import { NewsItem } from '../card/news-card.component';
 import './card-list.styles.css';
 
 class NewsList extends Component {
@@ -12,7 +12,8 @@ class NewsList extends Component {
     super(props);
     this.state = {
       news: [],
-      loading: false,
+      searchField: '',
+      filterField: '',
     };
   }
 
@@ -28,15 +29,19 @@ class NewsList extends Component {
     const typedInput5 = 'country=ru';
     const typedInput6 = 'country=lt';
     const typedInput7 = 'q=eu';
+    const typedInput8 = '';
+
+    const query1 =
+      'https://newsapi.org/v2/everything?q=bitcoin&apiKey=8066c032a6af48cb9cbf84fda663b82f';
+    const query3 =
+      'https://newsapi.org/v2/everything?q=france&apiKey=8066c032a6af48cb9cbf84fda663b82f';
+    const query2 = `https://newsapi.org/v2/top-headlines?${typedInput8}&apiKey=8066c032a6af48cb9cbf84fda663b82f`;
 
     try {
       // Need to specify "Accept" header to get responce in JSON format
-      let response = await axios.get(
-        `https://newsapi.org/v2/top-headlines?${typedInput}&apiKey=8066c032a6af48cb9cbf84fda663b82f`,
-        {
-          headers: { Accept: 'application/json' },
-        }
-      );
+      let response = await axios.get(query3, {
+        headers: { Accept: 'application/json' },
+      });
       console.log('Response: ', response);
 
       const news_array_item = response.data.articles;
@@ -64,10 +69,30 @@ class NewsList extends Component {
   }
 
   render() {
+    const { news, searchField, filterField } = this.state;
+    const filteredNewsArray = news.filter(
+      (newsObj) =>
+        newsObj.title.toLowerCase().includes(filterField.toLowerCase()) ||
+        newsObj.description.toLowerCase().includes(filterField.toLowerCase())
+    );
     return (
       <div className='container'>
+        <div className='search-box'>
+          <input
+            onChange={(e) => this.setState({ searchField: e.target.value })}
+            type='search'
+            placeholder='Search for the news...'
+          />
+          <div>
+            <input
+              onChange={(e) => this.setState({ filterField: e.target.value })}
+              type='search'
+              placeholder='Filter result...'
+            />
+          </div>
+        </div>
         <div className='card-list'>
-          {this.state.news.map((newsItem) => (
+          {filteredNewsArray.map((newsItem) => (
             <NewsItem key={newsItem.id} newsItem={newsItem} />
           ))}
         </div>

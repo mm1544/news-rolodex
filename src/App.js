@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 // import NewsList from './components/card-list/NewsList';
-import NewsList from './components/news-list/news-list.component';
+import NewsList from './components/card-list/card-list.component';
 
 class App extends Component {
   render() {

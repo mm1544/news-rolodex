@@ -3,11 +3,18 @@
 } */
 .card-list {
   width: 85vw;
-  margin: 0 auto;
+  margin: 20px auto;
+  padding: 0;
   display: grid;
   /* 4 equal parts of the x dimention */
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
+}
+
+.search-box {
+  width: 85vw;
+  margin: 20px auto;
+  padding: 0;
 }
 
 @media only screen and (max-width: 2000px) {
@@ -19,6 +26,7 @@
 @media only screen and (max-width: 1400px) {
   .card-list {
     grid-template-columns: 1fr 1fr !important;
+    margin: 10px 10px;
   }
 }
 

@@ -1,8 +1,6 @@
 import React from 'react';
 import { SortableElement } from 'react-sortable-hoc';
-// import DeleteIcon from '@material-ui/icons/Delete';
 import Moment from 'react-moment';
-// import './news-card.styles.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 import './draggable-card.styles.css';
 

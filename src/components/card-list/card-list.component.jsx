@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-// import { Link } from 'react-dom';
 import axios from 'axios';
 import uuid from 'uuid/v4';
 import classNames from 'classnames';
@@ -21,8 +20,6 @@ class NewsList extends Component {
       filterField: '',
       loading: false,
     };
-    // this.onSubmitHandler = this.onSubmitHandler.bind(this);
-    // this.onChangeHandler = this.onChangeHandler.bind(this);
   }
 
   componentDidMount() {
@@ -127,11 +124,6 @@ class NewsList extends Component {
                 distance={20}
               />
             </main>
-            {/*<div className='card-list'>
-              {filteredNewsArray.map((newsItem) => (
-                <NewsItem key={newsItem.id} newsItem={newsItem} />
-              ))}
-              </div>*/}
           </Fragment>
         )}
       </div>

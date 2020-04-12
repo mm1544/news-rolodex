@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 // import { Link } from 'react-dom';
 import axios from 'axios';
 import uuid from 'uuid/v4';
-// const uuidv4 = require('uuid/v4');
-// import { NewsItem } from './NewsItem';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './DraggableCardsStyles';
+import { arrayMove } from 'react-sortable-hoc';
 import { NewsItem } from '../card/news-card.component';
+import DraggableCardsList from '../draggable-cards-list/draggable-cards-list.component';
 import SearchBox from '../search-box/search-box.component';
 import Spinner from '../spinner/Spinner';
 import './card-list.styles.css';
@@ -26,6 +29,12 @@ class NewsList extends Component {
     const defaultVal = '';
     this.getNews(defaultVal, true);
   }
+
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    this.setState(({ news }) => ({
+      news: arrayMove(news, oldIndex, newIndex),
+    }));
+  };
 
   onChangeHandler = (evt) => {
     this.setState({
@@ -85,6 +94,7 @@ class NewsList extends Component {
 
   render() {
     const { news, searchField, filterField, loading } = this.state;
+    const { theme, classes } = this.props;
     const filteredNewsArray = news.filter(
       (newsObj) =>
         newsObj.title.toLowerCase().includes(filterField.toLowerCase()) ||
@@ -101,15 +111,25 @@ class NewsList extends Component {
         {loading ? (
           <Spinner />
         ) : (
-          <div className='card-list'>
-            {filteredNewsArray.map((newsItem) => (
-              <NewsItem key={newsItem.id} newsItem={newsItem} />
-            ))}
-          </div>
+          <Fragment>
+            <main className={classNames(classes.content)}>
+              <DraggableCardsList
+                news={filteredNewsArray}
+                axis='xy'
+                onSortEnd={this.onSortEnd}
+                distance={20}
+              />
+            </main>
+            {/*<div className='card-list'>
+              {filteredNewsArray.map((newsItem) => (
+                <NewsItem key={newsItem.id} newsItem={newsItem} />
+              ))}
+              </div>*/}
+          </Fragment>
         )}
       </div>
     );
   }
 }
 
-export default NewsList;
+export default withStyles(styles, { withTheme: true })(NewsList);

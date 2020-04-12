@@ -6,6 +6,7 @@ import uuid from 'uuid/v4';
 // import { NewsItem } from './NewsItem';
 import { NewsItem } from '../card/news-card.component';
 import SearchBox from '../search-box/search-box.component';
+import Spinner from '../spinner/Spinner';
 import './card-list.styles.css';
 
 class NewsList extends Component {
@@ -15,6 +16,7 @@ class NewsList extends Component {
       news: [],
       searchField: '',
       filterField: '',
+      loading: false,
     };
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -34,7 +36,7 @@ class NewsList extends Component {
   onSubmitHandler(evt) {
     console.log('Input string: ', this.state.filterField);
     evt.preventDefault();
-    this.setState(() => ({ news: [] }));
+    this.setState(() => ({ news: [], loading: true }));
     this.getNews(this.state.searchField, false);
   }
 
@@ -68,6 +70,7 @@ class NewsList extends Component {
               publishedAt: art.publishedAt,
             },
           ],
+          loading: false,
         }))
       );
 
@@ -80,7 +83,7 @@ class NewsList extends Component {
   }
 
   render() {
-    const { news, searchField, filterField } = this.state;
+    const { news, searchField, filterField, loading } = this.state;
     const filteredNewsArray = news.filter(
       (newsObj) =>
         newsObj.title.toLowerCase().includes(filterField.toLowerCase()) ||
@@ -94,11 +97,15 @@ class NewsList extends Component {
           onChangeHandler={this.onChangeHandler}
           onSubmitHandler={this.onSubmitHandler}
         />
-        <div className='card-list'>
-          {filteredNewsArray.map((newsItem) => (
-            <NewsItem key={newsItem.id} newsItem={newsItem} />
-          ))}
-        </div>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <div className='card-list'>
+            {filteredNewsArray.map((newsItem) => (
+              <NewsItem key={newsItem.id} newsItem={newsItem} />
+            ))}
+          </div>
+        )}
       </div>
     );
   }

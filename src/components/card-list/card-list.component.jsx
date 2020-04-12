@@ -18,8 +18,8 @@ class NewsList extends Component {
       filterField: '',
       loading: false,
     };
-    this.onSubmitHandler = this.onSubmitHandler.bind(this);
-    this.onChangeHandler = this.onChangeHandler.bind(this);
+    // this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    // this.onChangeHandler = this.onChangeHandler.bind(this);
   }
 
   componentDidMount() {
@@ -27,18 +27,19 @@ class NewsList extends Component {
     this.getNews(defaultVal, true);
   }
 
-  onChangeHandler(evt) {
+  onChangeHandler = (evt) => {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
-  }
+  };
 
-  onSubmitHandler(evt) {
+  onSubmitHandler = (evt) => {
     console.log('Input string: ', this.state.filterField);
     evt.preventDefault();
-    this.setState(() => ({ news: [], loading: true }));
+
     this.getNews(this.state.searchField, false);
-  }
+    this.setState(() => ({ news: [], loading: true, searchField: '' }));
+  };
 
   async getNews(inputString, isDefault) {
     let query = '';

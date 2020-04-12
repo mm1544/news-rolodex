@@ -11,6 +11,13 @@
   grid-gap: 20px;
 }
 
+.container {
+  /* max-width: 1100px; */
+  /* overflow: hidden; */
+  padding: 0;
+  margin: 6rem auto 0rem;
+}
+
 /* .search-box {
   width: 85vw;
   margin: 20px auto;

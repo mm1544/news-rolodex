@@ -1,4 +1,6 @@
 import React from 'react';
+// import Moment from 'react-moment';
+import Moment from 'react-moment';
 import './news-card.styles.css';
 
 export const NewsItem = ({
@@ -14,7 +16,9 @@ export const NewsItem = ({
       <a href={url} target='_blank'>
         Read more{' '}
       </a>
-      <div className='date'>Published: {publishedAt}</div>
+      <div className='date'>
+        Published on: <Moment format='DD/MM/YYYY'>{publishedAt}</Moment>
+      </div>
     </p>
   </a>
 );

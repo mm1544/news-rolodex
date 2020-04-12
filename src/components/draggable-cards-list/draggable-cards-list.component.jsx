@@ -12,7 +12,7 @@ const DraggableCardsList = SortableContainer(({ news, removeCard }) => {
           index={i}
           key={newsItem.id}
           newsItem={newsItem}
-          handleClick={() => removeCard(newsItem.id)}
+          removeCard={() => removeCard(newsItem.id)}
         />
       ))}
     </div>

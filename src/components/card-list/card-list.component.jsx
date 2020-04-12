@@ -42,6 +42,12 @@ class NewsList extends Component {
     });
   };
 
+  removeCard = (cardId) => {
+    this.setState({
+      news: this.state.news.filter((newsItem) => newsItem.id !== cardId),
+    });
+  };
+
   onSubmitHandler = (evt) => {
     console.log('Input string: ', this.state.filterField);
     evt.preventDefault();
@@ -114,6 +120,7 @@ class NewsList extends Component {
           <Fragment>
             <main className={classNames(classes.content)}>
               <DraggableCardsList
+                removeCard={this.removeCard}
                 news={filteredNewsArray}
                 axis='xy'
                 onSortEnd={this.onSortEnd}

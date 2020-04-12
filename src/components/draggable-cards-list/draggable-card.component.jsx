@@ -3,11 +3,13 @@ import { SortableElement } from 'react-sortable-hoc';
 // import DeleteIcon from '@material-ui/icons/Delete';
 import Moment from 'react-moment';
 // import './news-card.styles.css';
+import DeleteIcon from '@material-ui/icons/Delete';
+import './draggable-card.styles.css';
 
 const DraggableCard = SortableElement(
   ({
     newsItem: { title, description, image, url, publishedAt },
-    handleClick,
+    removeCard,
   }) => (
     <div className='card-container'>
       <h4>{title}</h4>
@@ -21,6 +23,9 @@ const DraggableCard = SortableElement(
         </a>
         <div className='date'>
           Published on: <Moment format='DD/MM/YYYY'>{publishedAt}</Moment>
+        </div>
+        <div>
+          <DeleteIcon className='delete-icon' onClick={removeCard} />
         </div>
       </p>
     </div>

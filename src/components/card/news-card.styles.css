@@ -12,6 +12,24 @@
   transition: transform 0.25s ease-out;
 }
 
+.link-date-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.date {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* .img-container {
+  display: flex;
+  
+  justify-content: center;
+} */
+
 .card-container:hover {
   transform: scale(1.05);
 }

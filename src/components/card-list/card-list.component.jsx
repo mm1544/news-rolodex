@@ -5,6 +5,7 @@ import uuid from 'uuid/v4';
 // const uuidv4 = require('uuid/v4');
 // import { NewsItem } from './NewsItem';
 import { NewsItem } from '../card/news-card.component';
+import SearchBox from '../search-box/search-box.component';
 import './card-list.styles.css';
 
 class NewsList extends Component {
@@ -15,31 +16,40 @@ class NewsList extends Component {
       searchField: '',
       filterField: '',
     };
+    this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
   }
 
   componentDidMount() {
-    this.getNews();
+    const defaultVal = '';
+    this.getNews(defaultVal, true);
   }
 
-  async getNews() {
-    const typedInput = 'sources=bbc-news';
-    const typedInput2 = 'country=lt&category=business';
-    const typedInput3 = 'q=johnson';
-    const typedInput4 = 'country=de';
-    const typedInput5 = 'country=ru';
-    const typedInput6 = 'country=lt';
-    const typedInput7 = 'q=eu';
-    const typedInput8 = '';
+  onChangeHandler(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value,
+    });
+  }
 
-    const query1 =
-      'https://newsapi.org/v2/everything?q=bitcoin&apiKey=8066c032a6af48cb9cbf84fda663b82f';
-    const query3 =
-      'https://newsapi.org/v2/everything?q=france&apiKey=8066c032a6af48cb9cbf84fda663b82f';
-    const query2 = `https://newsapi.org/v2/top-headlines?${typedInput8}&apiKey=8066c032a6af48cb9cbf84fda663b82f`;
+  onSubmitHandler(evt) {
+    console.log('Input string: ', this.state.filterField);
+    evt.preventDefault();
+    this.setState(() => ({ news: [] }));
+    this.getNews(this.state.searchField, false);
+  }
+
+  async getNews(inputString, isDefault) {
+    let query = '';
+    if (isDefault || inputString === '') {
+      query = `
+      https://newsapi.org/v2/top-headlines?country=gb&apiKey=8066c032a6af48cb9cbf84fda663b82f`;
+    } else {
+      query = `https://newsapi.org/v2/everything?q=${inputString}&apiKey=8066c032a6af48cb9cbf84fda663b82f`;
+    }
 
     try {
       // Need to specify "Accept" header to get responce in JSON format
-      let response = await axios.get(query3, {
+      let response = await axios.get(query, {
         headers: { Accept: 'application/json' },
       });
       console.log('Response: ', response);
@@ -55,6 +65,7 @@ class NewsList extends Component {
               description: art.description,
               url: art.url,
               image: art.urlToImage,
+              publishedAt: art.publishedAt,
             },
           ],
         }))
@@ -77,20 +88,12 @@ class NewsList extends Component {
     );
     return (
       <div className='container'>
-        <div className='search-box'>
-          <input
-            onChange={(e) => this.setState({ searchField: e.target.value })}
-            type='search'
-            placeholder='Search for the news...'
-          />
-          <div>
-            <input
-              onChange={(e) => this.setState({ filterField: e.target.value })}
-              type='search'
-              placeholder='Filter result...'
-            />
-          </div>
-        </div>
+        <SearchBox
+          searchField={searchField}
+          filterField={filterField}
+          onChangeHandler={this.onChangeHandler}
+          onSubmitHandler={this.onSubmitHandler}
+        />
         <div className='card-list'>
           {filteredNewsArray.map((newsItem) => (
             <NewsItem key={newsItem.id} newsItem={newsItem} />
@@ -100,12 +103,5 @@ class NewsList extends Component {
     );
   }
 }
-
-/*
-{this.state.news &&
-          this.state.news.map(
-            (news_item, index) => news_item.data.articles[index].title
-          )}
-*/
 
 export default NewsList;

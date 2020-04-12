@@ -34,7 +34,7 @@ const Navbar = () => {
     <nav className='navbar bg-dark'>
       <h1>
         <a href='#!'>
-          <i className='fas fa-code'></i>Drad-And-Drop NEWS
+          <i className='fas fa-code'></i>Drag-And-Drop NEWS
         </a>
       </h1>
       <Fragment>{newsLinks}</Fragment>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { SortableElement } from 'react-sortable-hoc';
 import Moment from 'react-moment';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -15,17 +15,18 @@ const DraggableCard = SortableElement(
         <img style={{ width: 400 }} src={image} alt='' />
       </div>
       <div>{description}</div>
-      <p className='link-date-container'>
-        <a href={url} target='_blank'>
+      <div className='date-container publishing-date'>
+        Published on: <Moment format='DD/MM/YYYY'>{publishedAt}</Moment>
+      </div>
+      <div className='link-container'>
+        <a className='read-more' href={url} target='_blank'>
           Read more{' '}
         </a>
-        <div className='date'>
-          Published on: <Moment format='DD/MM/YYYY'>{publishedAt}</Moment>
+
+        <div className='delete-icon'>
+          <DeleteIcon onClick={removeCard} />
         </div>
-        <div>
-          <DeleteIcon className='delete-icon' onClick={removeCard} />
-        </div>
-      </p>
+      </div>
     </div>
   )
 );

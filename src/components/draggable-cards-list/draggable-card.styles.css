@@ -1,3 +1,24 @@
-.delete-icon {
+div.delete-icon {
   transition: all 0.3s ease-in-out;
+  color: #17a2b8 !important;
+  cursor: pointer;
 }
+
+.read-more {
+  color: #17a2b8;
+}
+
+.publishing-date {
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+  /* justify-content: right; */
+  /* position: relative;
+  right: 0; */
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* .date-container {
+  display: block;
+} */

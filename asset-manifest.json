@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/news-rolodex/static/css/main.458b31b0.chunk.css",
+    "main.css": "/news-rolodex/static/css/main.8ecc7707.chunk.css",
     "main.js": "/news-rolodex/static/js/main.a89bab5c.chunk.js",
     "main.js.map": "/news-rolodex/static/js/main.a89bab5c.chunk.js.map",
     "runtime-main.js": "/news-rolodex/static/js/runtime-main.67acd5b9.js",
@@ -8,15 +8,15 @@
     "static/js/2.4c370e1a.chunk.js": "/news-rolodex/static/js/2.4c370e1a.chunk.js",
     "static/js/2.4c370e1a.chunk.js.map": "/news-rolodex/static/js/2.4c370e1a.chunk.js.map",
     "index.html": "/news-rolodex/index.html",
-    "precache-manifest.1d4a6be709c3682f25baeb4d68391ef7.js": "/news-rolodex/precache-manifest.1d4a6be709c3682f25baeb4d68391ef7.js",
+    "precache-manifest.e484fb03d1886e27cc37f2c6df0cf8ff.js": "/news-rolodex/precache-manifest.e484fb03d1886e27cc37f2c6df0cf8ff.js",
     "service-worker.js": "/news-rolodex/service-worker.js",
-    "static/css/main.458b31b0.chunk.css.map": "/news-rolodex/static/css/main.458b31b0.chunk.css.map",
+    "static/css/main.8ecc7707.chunk.css.map": "/news-rolodex/static/css/main.8ecc7707.chunk.css.map",
     "static/js/2.4c370e1a.chunk.js.LICENSE.txt": "/news-rolodex/static/js/2.4c370e1a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.67acd5b9.js",
     "static/js/2.4c370e1a.chunk.js",
-    "static/css/main.458b31b0.chunk.css",
+    "static/css/main.8ecc7707.chunk.css",
     "static/js/main.a89bab5c.chunk.js"
   ]
 }

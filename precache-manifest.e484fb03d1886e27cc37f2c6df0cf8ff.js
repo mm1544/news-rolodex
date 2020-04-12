@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2ee843ca143d5e3d2785bc45a75fb892",
+    "revision": "cebadd11fb2e19f5241aa3f25d91e34e",
     "url": "/news-rolodex/index.html"
   },
   {
-    "revision": "3ba86dc8bdc5546d100c",
-    "url": "/news-rolodex/static/css/main.458b31b0.chunk.css"
+    "revision": "c6d6bf62d467fd6aeb64",
+    "url": "/news-rolodex/static/css/main.8ecc7707.chunk.css"
   },
   {
     "revision": "6db8ae084f1539e19c58",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/news-rolodex/static/js/2.4c370e1a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3ba86dc8bdc5546d100c",
+    "revision": "c6d6bf62d467fd6aeb64",
     "url": "/news-rolodex/static/js/main.a89bab5c.chunk.js"
   },
   {
